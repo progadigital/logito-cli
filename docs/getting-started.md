@@ -16,15 +16,15 @@ Windows:
 winget install progadigital.logito
 ```
 
-## 2. Point Logito at a local workflow
+## 2. Start local capture
 
-Run Logito against the app, script, or workflow you want to inspect:
+For exploratory local debugging:
 
 ```bash
-logito run ./your-app
+logito dev start
 ```
 
-This starts a session and captures the bounded runtime execution.
+This starts capture against the active local workflow and records a bounded runtime session.
 
 What Logito is looking for:
 
@@ -33,10 +33,19 @@ What Logito is looking for:
 - retries, latency shifts, failures, and downstream calls
 - enough evidence to compare current behavior against baseline behavior
 
-## 3. Ask for the analysis
+## 3. Read the latest session
+
+For the latest captured local session:
 
 ```bash
-logito analyze
+logito review
+```
+
+For a scripted scenario you want to rerun and compare deterministically:
+
+```bash
+logito run flow.yaml
+logito compare last
 ```
 
 You should expect:
@@ -71,18 +80,18 @@ The first successful run should answer questions like:
 For a local service:
 
 ```bash
-logito run ./your-app
-logito analyze
+logito dev start
+logito review
 ```
 
-For repeated debugging:
+For repeated scripted debugging:
 
 ```bash
-logito run ./your-app
-logito analyze
+logito run flow.yaml
+logito compare last
 # make one fix
-logito run ./your-app
-logito analyze
+logito run flow.yaml
+logito compare last
 ```
 
 That second pass is where baselines start paying off. Instead of rereading raw output, you can ask whether the changed segment is actually back within expected behavior.

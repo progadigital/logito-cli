@@ -15,8 +15,8 @@ logito --version
 ## First Run
 
 ```bash
-logito run ./your-app
-logito analyze
+logito dev start
+logito review
 ```
 
 ## Troubleshooting

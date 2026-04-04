@@ -38,19 +38,26 @@ More detail:
 
 ## 60-Second Quickstart
 
-Point Logito at a running app or local workflow:
+For live local capture:
 
 ```bash
-logito run ./your-app
-logito analyze
+logito dev start
+logito review
+```
+
+For a reproducible scripted flow:
+
+```bash
+logito run flow.yaml
+logito compare last
 ```
 
 What happens:
 
-1. `logito run ./your-app` starts a session and captures the runtime behavior of that execution.
-2. Logito groups the execution into segments such as request handling, downstream calls, retries, and completion paths.
-3. `logito analyze` evaluates the captured session against the most relevant baseline.
-4. The CLI prints a structured summary with anomalies, likely impact, and the next investigation step.
+1. `logito dev start` attaches to the active local workflow and captures runtime behavior as a session.
+2. Logito groups the observed execution into segments such as request handling, downstream calls, retries, and completion paths.
+3. `logito review` prints the authoritative summary for the latest captured session.
+4. For scripted scenarios, `logito run flow.yaml` executes the defined workflow and `logito compare last` evaluates the latest session against the most relevant baseline.
 
 Expected result:
 
@@ -62,7 +69,7 @@ Expected result:
 ## Example Output
 
 ```text
-$ logito analyze
+$ logito review
 
 Session: checkout-local-2026-04-03T15:18:42Z
 Status: analyzed
@@ -161,8 +168,8 @@ public/logito-cli/
 If you want the shortest path to first value:
 
 1. Install the CLI for your platform.
-2. Run `logito run ./your-app`.
-3. Run `logito analyze`.
+2. Run `logito dev start`.
+3. Run `logito review`.
 4. Read the session summary and inspect the flagged segment first.
 
 If that sounds like the right workflow, start with [Getting started](./docs/getting-started.md).

@@ -16,8 +16,8 @@ The workflow includes:
 ## Command
 
 ```bash
-logito run ./checkout-service
-logito analyze
+logito dev start
+logito review
 ```
 
 ## What Logito Sees
@@ -37,7 +37,7 @@ Segments
 ## Example Output
 
 ```text
-$ logito analyze
+$ logito review
 
 Session: checkout-local-2026-04-03T14:02:18Z
 Status: analyzed

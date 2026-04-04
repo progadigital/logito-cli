@@ -17,14 +17,14 @@ The workflow includes:
 ## Command
 
 ```bash
-logito run ./payments-stack
-logito analyze
+logito run flow.yaml
+logito compare last
 ```
 
 ## Example Output
 
 ```text
-$ logito analyze
+$ logito compare last
 
 Session: payments-local-2026-04-03T15:31:07Z
 Status: analyzed
