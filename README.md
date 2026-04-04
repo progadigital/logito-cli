@@ -66,6 +66,34 @@ Expected result:
 - at least one evaluation result
 - a concise action-oriented summary
 
+## Repo-Local Contributor Path
+
+If you are validating Logito from the private workspace instead of using an installed package, use the repo-local binary in `./bin` and clear stale daemon state before starting capture again:
+
+```bash
+make build-go
+./bin/logito dev stop
+./bin/logito dev status
+```
+
+If `dev status` says capture is not running, start from a real active target instead of a stale `local-process` daemon state.
+
+For the fixture stack in this workspace:
+
+```bash
+make up-test-app
+./bin/logito dev start --project logito-test-app
+./bin/logito dev status
+```
+
+Use the exact project name printed by `make up-test-app` if you override the Compose project name locally.
+
+If you are not using Docker Compose and want to capture a local process directly:
+
+```bash
+./bin/logito dev start -- npm run dev
+```
+
 ## Example Output
 
 ```text
