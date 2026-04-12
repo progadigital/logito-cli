@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-brew install progadigital/tap/logito
+brew install logito
 ```
 
 ## Verify
@@ -16,6 +16,7 @@ logito --version
 
 ```bash
 logito dev start
+# make a change, hit an endpoint, or run a test
 logito review
 ```
 
@@ -31,7 +32,7 @@ Refresh your brew metadata and try again:
 
 ```bash
 brew update
-brew install progadigital/tap/logito
+brew install logito
 ```
 
 ### Old version still appears
@@ -39,7 +40,7 @@ brew install progadigital/tap/logito
 Upgrade explicitly:
 
 ```bash
-brew upgrade progadigital/tap/logito
+brew upgrade logito
 ```
 
 ### `logito` is not on PATH after install

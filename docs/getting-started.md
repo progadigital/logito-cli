@@ -1,111 +1,72 @@
 # Getting Started
 
-This guide is designed to get a developer from install to first useful runtime summary in under five minutes.
+This guide gets you from install to a useful answer fast.
 
-## 1. Install the CLI
+## 1. Install
 
-macOS:
+macOS and Linux:
 
 ```bash
-brew install progadigital/tap/logito
+brew install logito
 ```
 
 Windows:
 
 ```powershell
-winget install progadigital.logito
+winget install --id ProgaDigital.Logito
 ```
 
-## 2. Start local capture
-
-For exploratory local debugging:
+## 2. Start capture
 
 ```bash
 logito dev start
 ```
 
-This starts capture against the active local workflow and records a bounded runtime session.
+Logito waits for real activity in your system and captures the run.
 
-What Logito is looking for:
+## 3. Trigger activity
 
-- workflow start and finish
-- meaningful execution boundaries
-- retries, latency shifts, failures, and downstream calls
-- enough evidence to compare current behavior against baseline behavior
+Make a change, hit an endpoint, run a test, or reproduce the issue you care about.
 
-## 3. Read the latest session
-
-For the latest captured local session:
+## 4. Review what changed
 
 ```bash
 logito review
 ```
 
-For a scripted scenario you want to rerun and compare deterministically:
+If you want a live summary during capture:
 
 ```bash
-logito run flow.yaml
-logito compare last
+logito ask "what changed?"
 ```
 
-You should expect:
+## 5. Read the answer
 
-- a named session
-- a segment list
-- an evaluation result
-- a suggested next action
+Logito is optimized to return:
 
-## 4. Read the output in this order
+- `WHAT CHANGED`
+- `WHAT TO DO NEXT`
 
-1. Session
-   Confirm you are looking at the right execution.
-2. Segments
-   Find the step marked as changed, degraded, or failed.
-3. Evaluation
-   Check severity, primary finding, and supporting evidence.
-4. Suggested action
-   Start investigation from the segment Logito names first.
+That means you should be able to answer:
 
-## 5. What success looks like
-
-The first successful run should answer questions like:
-
-- Which segment changed?
-- Was the change a failure, slowdown, retry spike, or logic drift?
-- What baseline was used?
-- Where should I look next?
+- what changed in the run
+- whether behavior drifted from baseline
+- what to inspect or fix first
 
 ## First Practical Workflow
 
-For a local service:
-
 ```bash
 logito dev start
+# reproduce the issue
 logito review
 ```
 
-For repeated scripted debugging:
+Optional:
 
 ```bash
-logito run flow.yaml
-logito compare last
-# make one fix
-logito run flow.yaml
-logito compare last
+logito ask "what changed?"
+logito review --json
 ```
-
-That second pass is where baselines start paying off. Instead of rereading raw output, you can ask whether the changed segment is actually back within expected behavior.
-
-## What Logito Is Not Doing
-
-This public repo does not expose internal engine logic.
-
-You should think of the public interface like this:
-
-- capture a runtime workflow
-- break it into meaningful segments
-- evaluate it against baseline behavior
-- return actionable findings
 
 ## Next Reading
 

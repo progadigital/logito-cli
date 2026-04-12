@@ -3,7 +3,7 @@
 ## Install
 
 ```powershell
-winget install progadigital.logito
+winget install --id ProgaDigital.Logito
 ```
 
 ## Verify
@@ -16,6 +16,7 @@ logito --version
 
 ```powershell
 logito dev start
+# make a change, hit an endpoint, or run a test
 logito review
 ```
 
@@ -31,7 +32,7 @@ Refresh sources and try again:
 
 ```powershell
 winget source update
-winget install progadigital.logito
+winget install --id ProgaDigital.Logito
 ```
 
 ### Old version is still installed
@@ -39,7 +40,7 @@ winget install progadigital.logito
 Upgrade explicitly:
 
 ```powershell
-winget upgrade progadigital.logito
+winget upgrade --id ProgaDigital.Logito
 ```
 
 ### `logito` is not recognized after install
