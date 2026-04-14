@@ -3,6 +3,7 @@
 ## Install
 
 ```bash
+brew tap progadigital/tap
 brew install logito
 ```
 
@@ -32,6 +33,7 @@ Refresh your brew metadata and try again:
 
 ```bash
 brew update
+brew tap progadigital/tap
 brew install logito
 ```
 

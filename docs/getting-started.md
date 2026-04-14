@@ -7,6 +7,7 @@ This guide gets you from install to a useful answer fast.
 macOS and Linux:
 
 ```bash
+brew tap progadigital/tap
 brew install logito
 ```
 

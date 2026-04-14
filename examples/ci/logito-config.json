@@ -1,0 +1,6 @@
+{
+  "ci": {
+    "drift_threshold_warn": 30,
+    "drift_threshold_fail": 60
+  }
+}
