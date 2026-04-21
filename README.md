@@ -70,6 +70,65 @@ logito review --json
 - `logito review` gives the final answer.
 - `logito review --json` gives structured output for agents and automation.
 
+## Ambient Monitoring
+
+Logito ships three optional surfaces for ambient awareness. All are local, work offline, and require no account.
+
+### Local Web Dashboard
+
+```bash
+logito dev ui
+```
+
+Opens a local dashboard in your browser at `http://127.0.0.1:7429`. Shows capture state across all your projects, per-service coverage, and sync status. Auto-refreshes every 5 seconds. Authenticated via a one-time session token — no login required.
+
+### Auto-Restart After Reboot
+
+```bash
+logito dev install-service
+```
+
+Registers the capture daemon as an OS-managed service so it restarts automatically at login. Uses LaunchAgent on macOS, systemd user unit on Linux, and Task Scheduler on Windows. Remove with `logito dev uninstall-service`.
+
+### System Tray
+
+```bash
+logito dev install-tray
+```
+
+Downloads and installs a small tray app that lives in your menu bar (macOS) or system tray (Linux/Windows). The tray icon uses the Logito logo and changes color to indicate capture state:
+
+- **Green** — daemon running, all declared services captured
+- **Yellow** — daemon paused or missing expected services
+- **Red** — daemon not running
+
+Click the tray icon for quick actions: Open Dashboard, Open in VS Code, Pause/Resume capture, Quit.
+
+The installer registers the tray for autostart at login (LaunchAgent on macOS, `.desktop` entry on Linux, registry `Run` key on Windows). Remove with `logito dev uninstall-tray`.
+
+> The tray is currently available on macOS. Linux and Windows support is tracked separately.
+
+## Expected Services
+
+Declare the services you expect to monitor in `.logito/project.yaml` at your git root:
+
+```yaml
+project: my-api
+expected_services:
+  - name: api
+    match: container_name
+    match_value: my-api-container
+  - name: worker
+    match: process_name
+    match_value: worker.py
+  - name: postgres
+    optional: true
+    match: container_name
+    match_value: postgres
+```
+
+If a non-optional service isn't detected, `logito dev status`, the web dashboard, and the tray all surface coverage warnings so you catch silent capture gaps before they matter.
+
 ## When To Use Logito
 
 Use Logito when:
